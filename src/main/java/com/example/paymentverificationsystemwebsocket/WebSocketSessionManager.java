@@ -18,9 +18,11 @@ public class WebSocketSessionManager {
 
     public void sendMessage(TextMessage message) throws IOException {
         for (WebSocketSession session : sessions) {
-            if(session.isOpen()){
-                session.sendMessage(message);
-            }
+            if(session.isOpen()) session.sendMessage(message);
         }
+    }
+
+    public void removeSession(WebSocketSession session){
+        sessions.remove(session);
     }
 }

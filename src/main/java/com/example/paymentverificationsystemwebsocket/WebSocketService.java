@@ -17,7 +17,8 @@ public class WebSocketService  extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception{
         sessionManager.addNewSession(session);
-        session.sendMessage(new TextMessage("connected"));
+        //session.sendMessage(new TextMessage("connected"));
+        System.out.println("connected");
     }
 
     @Override
@@ -25,7 +26,7 @@ public class WebSocketService  extends TextWebSocketHandler {
         String receivedMessage = message.getPayload();
         System.out.println("recieved message: " + receivedMessage);
         try{
-            sessionManager.sendMessage(new TextMessage("Message recieved: " + receivedMessage));
+            sessionManager.sendMessage(new TextMessage(receivedMessage));
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
